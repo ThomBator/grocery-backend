@@ -57,6 +57,24 @@ router.put("/:id", async (req: Request, res: Response) => {
   }
 });
 
+//@route DELETE api/items
+//@description Delete entire list
+//@access public
+
+router.delete("/", async (req: Request, res: Response) => {
+  const { data, error } = await supabase
+    .from("ListItems")
+    .delete()
+    .neq("id", 0)
+    .select();
+
+  if (error) {
+    res.send(error);
+  } else {
+    res.send("deleted!");
+  }
+});
+
 //@route DELETE api/items/:id
 //@description Delete book by id
 //@access public

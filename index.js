@@ -6,8 +6,11 @@ var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const items_1 = __importDefault(require("./routes/api/items"));
+const cors_1 = __importDefault(require("cors"));
 //Initialize App
 const app = (0, express_1.default)();
+//Setup cors
+app.use((0, cors_1.default)({ origin: true, credentials: true }));
 //use Routes
 app.use("/api/items", items_1.default);
 //Test connection

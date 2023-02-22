@@ -1,9 +1,12 @@
 import express, { Express, Request, Response } from "express";
 import items from "./routes/api/items";
-import * as path from "path";
-
+import cors from "cors";
 //Initialize App
 const app: Express = express();
+
+//Setup cors
+
+app.use(cors({ origin: true, credentials: true }));
 
 //use Routes
 app.use("/api/items", items);

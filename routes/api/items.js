@@ -61,6 +61,22 @@ router.put("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         res.send("updated!");
     }
 }));
+//@route DELETE api/items
+//@description Delete entire list
+//@access public
+router.delete("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { data, error } = yield supabase_client_1.default
+        .from("ListItems")
+        .delete()
+        .neq("id", 0)
+        .select();
+    if (error) {
+        res.send(error);
+    }
+    else {
+        res.send("deleted!");
+    }
+}));
 //@route DELETE api/items/:id
 //@description Delete book by id
 //@access public
