@@ -27,7 +27,7 @@ router.get("/", async (req: Request, res: Response) => {
 router.post("/", async (req: Request, res: Response) => {
   const { data, error } = await supabase
     .from("ListItems")
-    .insert({ description: req.body.description })
+    .upsert({ description: req.body.description }, { ignoreDuplicates: true })
     .select();
 
   if (error) {

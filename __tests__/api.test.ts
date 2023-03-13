@@ -1,6 +1,5 @@
 const request = require("supertest");
 const express = require("express");
-import { after } from "node:test";
 import items from "../routes/api/items";
 
 const testApp = express();
@@ -10,12 +9,12 @@ describe("Testing GET /api/items", () => {
   test("should return 200", async () => {
     const response = await request(testApp).get("/api/items");
     expect(response.statusCode).toBe(200);
-    expect(response.body.length >= 1).toBe(true);
   });
   test("should return db items", async () => {
     const response = await request(testApp).get("/api/items");
 
-    expect(response.body.length >= 1).toBe(true);
+    expect(response.body[0]["description"]).toEqual("Apples");
+    expect(response.body[1]["description"]).toEqual("Pears");
   });
 });
 
@@ -47,12 +46,12 @@ describe("Testing PUT  /api/items/:id", () => {
 });
 
 describe("Testing delete  /api/items/:id", () => {
-  test("should be able to update item", async () => {
-    //Getting item to update
+  test("should be able to delete item", async () => {
+    //Getting item to delete
     const getItems = await request(testApp).get("/api/items");
     const lastItem = getItems.body[getItems.body.length - 1];
 
-    //delete
+    //Updating item
     const response = await request(testApp).delete(`/api/items/${lastItem.id}`);
 
     expect(response.status).toBe(200);

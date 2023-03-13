@@ -1,16 +1,13 @@
 {
   "name": "grocery-backend",
-  "jest": {
-    "verbose": true
-  },
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "built/index.js",
   "scripts": {
     "test": "jest",
-    "build": "npx tsc",
-    "start": "node dist/index.js",
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\""
+    "build": "esbuild index.ts --platform=node --bundle --minify --outfile=built/index.js",
+    "start": "node built/index.js",
+    "dev": "node built/index.js"
   },
   "keywords": [],
   "author": "",
@@ -20,7 +17,9 @@
     "body-parser": "^1.20.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
-    "express": "^4.18.2"
+    "esbuild": "^0.17.11",
+    "express": "^4.18.2",
+    "ts-node": "^10.9.1"
   },
   "devDependencies": {
     "@babel/core": "^7.21.0",
@@ -37,6 +36,7 @@
     "msw": "^1.1.0",
     "nodemon": "^2.0.20",
     "supertest": "^6.3.3",
+    "ts-jest": "^29.0.5",
     "typescript": "^4.9.5"
   }
 }
