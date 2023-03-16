@@ -1,6 +1,9 @@
 {
   "name": "grocery-backend",
   "version": "1.0.0",
+  "engines": {
+    "node": ">=19.4.0"
+  },
   "description": "",
   "main": "built/index.js",
   "scripts": {

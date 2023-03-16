@@ -2,7 +2,7 @@ import { createClient } from "@supabase/supabase-js";
 import { config } from "dotenv";
 import * as path from "path";
 
-config({ path: "./.env.local" });
+config({ path: "./.env" });
 
 const supabaseUrl = process.env.SUPABASE_API_URL;
 const supabaseKey = process.env.SUPABASE_ANON;
